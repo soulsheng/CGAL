@@ -1,0 +1,16 @@
+# GMP configure step -*- CMake -*-
+#
+# Copyright (C) 2012 Guofu Xiang <gfxiang@gmail.com>.
+# All rights reserved.
+
+execute_process(
+  COMMAND
+    sh @GMP_SOURCE_DIR@/configure
+    --prefix @GMP_INSTALL_DIR@
+    --enable-cxx
+  WORKING_DIRECTORY @GMP_BINARY_DIR@
+  RESULT_VARIABLE rv)
+
+if(NOT rv EQUAL 0)
+  message(FATAL_ERROR "Failed to configure GMP.")
+endif()
